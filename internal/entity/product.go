@@ -2,18 +2,18 @@ package entity
 
 import "github.com/google/uuid"
 
-type Product struct{
+type Product struct {
 	ID string
 	Name string
 	Price float64
 }
 
-type ProductRepository interface{
+type ProductRepository interface {
 	Create(product *Product) error
 	FindAll() ([]*Product, error)
 }
  
-func NewProduct(name string, price float64) *Product{
+func NewProduct(name string, price float64) *Product {
 	return &Product{
 		ID: uuid.New().String(),
 		Name: name,
