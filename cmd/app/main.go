@@ -36,7 +36,4 @@ func main() {
 
 		_, err = createProductUseCase.Execute(dto)
 	}
-
-
-	listProductsUseCase := usecase.NewListProductsUseCase(repository)
 }
