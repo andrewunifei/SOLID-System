@@ -13,16 +13,15 @@ services:
 
   mysql:
     image: mysql:5.7
-    platform: linux/amd64
     container_name: mysql
     ports:
       - "3306:3306"
-    environment: 
+    environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: products
       MYSQL_PASSWORD: root
     extra_hosts:
-      - "host.docker.interal:172.17.0.1"
+      - "host.docker.internal:172.17.0.1"
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.3.0
@@ -45,7 +44,7 @@ services:
       - "9094:9094"
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2182'
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,OUTSIDE:PLAINTEXT
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092,OUTSIDE://host.docker.internal:9094
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1

@@ -11,10 +11,11 @@ import (
 	"github.com/andrewunifei/SOLID-system/internal/usecase"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"github.com/go-chi/chi/v5"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
-	db, err := sql.Open("mysql", "root:root@tcp(host.docker.internal:3306/products)")
+	db, err := sql.Open("mysql", "root:root@tcp(host.docker.internal:3306)/products")
 
 	if err != nil {
 		panic(err)
@@ -39,7 +40,7 @@ func main() {
 
 	// Kafka
 	msgChan := make(chan *kafka.Message)
-	go akafka.Consume([]string{"products"}, "host.docker.internal:9094", msgChan)
+	go akafka.Consume([]string{"product"}, "host.docker.internal:9094", msgChan)
 
 	for msg := range msgChan {
 		dto := usecase.CreateProductInputDto{}
