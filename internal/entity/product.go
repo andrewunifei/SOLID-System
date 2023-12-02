@@ -8,6 +8,7 @@ type Product struct {
 	Price float64
 }
 
+// Contrato
 type ProductRepository interface {
 	Create(product *Product) error
 	FindAll() ([]*Product, error)
